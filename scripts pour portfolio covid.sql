@@ -8,9 +8,9 @@ select location,date,total_cases,new_cases,total_deaths,population
 from PortfolioProjet..covidmort$
 order by 1,2
 
---total de cas vs  total dÈcËs au Canada
---cela montre pourcentage de risk de dÈces si tu a le covid au canada
-select location,date,total_cases,total_deaths,(total_deaths/total_cases)*100 as Pourcentage_dÈcËs
+--total de cas vs  total d√©c√®s au Canada
+--cela montre le pourcentage de risque de d√©c√®s  si tu as le covid au canada
+select location,date,total_cases,total_deaths,(total_deaths/total_cases)*100 as Pourcentage_d√©c√®s
 from PortfolioProjet..covidmort$
 where location like '%Canada%'
 order by 1,2
@@ -28,24 +28,24 @@ from PortfolioProjet..covidmort$
 group by location ,population
 order by Pourcentage_infecter desc
 
---pays avec le plus grand dÈces par population
-select location,max(cast(Total_deaths as int)) as max_nb_dÈces 
+--pays avec le plus grand d√©ces par population
+select location,max(cast(Total_deaths as int)) as max_nb_d√©ces 
 from PortfolioProjet..covidmort$
-	-- il faut  enlevÈ les continent ,car nous regardons les pays 
+	-- il faut  enlev√© les continent ,car nous regardons les pays 
 where continent is not null
 group by location
-order by max_nb_dÈces  desc
+order by max_nb_d√©ces  desc
 
 --continent avec nb de deces
 
-select continent,max(cast(Total_deaths as int)) as max_nb_dÈces 
+select continent,max(cast(Total_deaths as int)) as max_nb_d√©ces 
 from PortfolioProjet..covidmort$
 where continent is  not null
 group by continent
-order by max_nb_dÈces  desc
+order by max_nb_d√©ces  desc
 
 --globalement 
-select date, sum(new_cases) as tolal_newcas ,sum(cast(new_deaths as int)) as total_deces, sum(cast(new_deaths as int))/SUM(new_cases )*100 as Pourcentage_dÈcËs
+select date, sum(new_cases) as tolal_newcas ,sum(cast(new_deaths as int)) as total_deces, sum(cast(new_deaths as int))/SUM(new_cases )*100 as Pourcentage_d√©c√®s
 from PortfolioProjet..covidmort$
 --where location like '%Canada%'
 where continent is not null
