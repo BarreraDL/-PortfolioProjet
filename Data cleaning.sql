@@ -1,4 +1,4 @@
-									--Nettoyage de données avec SQL
+									--Nettoyage de donnÃ©es avec SQL
 select *
 from PortfolioProjet..Nashville
 	
@@ -46,7 +46,7 @@ on a.ParcelID= b.ParcelID
 and a.[UniqueID ] <> b.[UniqueID ]
 where a.PropertyAddress is null
 					
-	--- Nous permet de valider qu’ il y a aucune adresse null
+	--- Nous permet de valider quâ€™ il y a aucune adresse null
 	select a.ParcelID,a.PropertyAddress, b.ParcelID,b.PropertyAddress, ISNULL(a.PropertyAddress,b.PropertyAddress)-- ISNULL va ajouter ladrrese requise 
 	from PortfolioProjet..Nashville a
 	join PortfolioProjet..Nashville b
@@ -79,7 +79,7 @@ Update Nashville
 set PropertySplitVille =SUBSTRING(PropertyAddress,charindex (',',PropertyAddress)+1  , len (PropertyAddress))
 
 
-	-- nous permet de voir que la colonne est ajouter 
+	--  Cela permet de voir si la colonne est ajoutÃ©e 
 select *
 from PortfolioProjet..Nashville
 
@@ -171,7 +171,7 @@ where row_num >1
 order by PropertyAddress
 
 
---effacer les colonnes inutilisées
+--effacer les colonnes inutilisÃ©es
 select *
 from PortfolioProjet..Nashville
 
